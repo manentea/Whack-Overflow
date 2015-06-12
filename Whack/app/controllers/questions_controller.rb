@@ -5,12 +5,12 @@ class QuestionsController < ApplicationController
 
 	def index
 		@questions = Question.all
-	end	
-	
+	end
+
 	def show
 		@question = Question.find(params[:id])
 	end
-	
+
 	def new
 		@question = Question.new
 	end
@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
 		h[:user_id] = xxxcurrent_user.id
 		@question = Question.new(h)
 		if @question.save
-			redirect_to @question
+			redirect_to xxxcurrent_user
 		else
 			render :new
 		end
@@ -36,14 +36,14 @@ class QuestionsController < ApplicationController
 		h[:user_id] = xxxcurrent_user.id
 		byebug
 		@question = Question.new(h)
-		if @question.update_attributes(h)	
+		if @question.update_attributes(h)
 			redirect_to @question
 		else
 			render :edit
 		end
 	end
 
-	def destroy 
+	def destroy
 		@question = Question.find(params[:id])
 		@question.destroy
 		redirect_to root_url
@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
 
 	private
 		def question_params
-			params.require(:question).permit(:body)
+			params.require(:question).permit(:body, :title)
 		end
 
 		def xxxcurrent_user
