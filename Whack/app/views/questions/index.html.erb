@@ -1,0 +1,13 @@
+<h1>User Index</h1>
+
+<div class="list-users">
+	<% if @users %>
+		<% @users.each do |u| %>
+			<h3><%= u.name %></h3>
+			<p><%= u.email %></p>
+		<% end %>
+	<% end %>
+</div>
+
+
+<!-- refactor with (render @users) -->
