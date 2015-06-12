@@ -8,6 +8,7 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
   end
 
+
   private
 
   def article_params
