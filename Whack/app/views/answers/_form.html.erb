@@ -1,0 +1,22 @@
+<%= form_for @answer do |f| %>
+ <% if @answer.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@answer.errors.count, "error") %> stopped this article from being saved:
+    </h2>
+    <ul>
+      <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+ </div>
+<% end %>
+
+  <p>
+   <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit     %>
+  </p>
+<% end %>
