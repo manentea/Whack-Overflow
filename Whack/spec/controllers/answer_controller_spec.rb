@@ -14,4 +14,16 @@ describe AnswersController do
     expect(response).to render_template :show
   end
  end
+
+  describe'GET#new' do
+    it "assigns a new Answer to @answer" do
+    get :new
+    expect(assigns(:answer)).to be_a_new(Answer)
+  end
+
+    it "renders the :new template" do
+      get :new
+      expect(response).to render_template :new
+    end
+ end
 end
