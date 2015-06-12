@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :answers, except: :index
+  resources :answer, except: :index
   resources :users
 
   get 'login' => 'sessions#new'
