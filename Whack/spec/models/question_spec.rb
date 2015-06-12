@@ -1,5 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe Question, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Question do
+	
+	let(:valid_question) {Question.new(user_id: 1, body: 'testquestionbody')}
+	let(:invalid_question) {Question.new(user_id: 1, body: '')}
+
+	it 'is valid with a user_id and body' do
+		expect(valid_question).to be_valid
+	end
+
+	it 'is invalid without a body' do
+		invalid_question.valid?
+		expect(invalid_question.errors[:body]).to include("can't be blank")
+	end
+
+
 end
