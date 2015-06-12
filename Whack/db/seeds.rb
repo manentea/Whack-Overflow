@@ -1,7 +1,24 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+user1 = User.create(name: 'antonio', email: 'antonio@gmail.com', password_digest: 'asdfasgdgsfadgf' )
+user2 = User.create(name: 'nikolai', email: 'nikolai@gmail.com', password_digest: 'asfdasdfasdgfas')
+user3 = User.create(name: 'lauris', email: 'lauris@gmail.com', password_digest: 'asdgfasgerggas' )
+user4 = User.create(name: 'mendel' , email: 'mendel@gmail.com' ,  password_digest: 'asrgeshrdg' )
+
+# questions--------------
+		question1 = Question.create(user_id: 3, body: 'what up i am lauris asking a question')
+		question2 = Question.create(user_id: 4, body: 'what up i am mendel asking a question')
+
+		vote1 = Vote.create(user_id: 1, votevalue: 1, votable_id: 1, votable_type: 'Question')
+		vote1 = Vote.create(user_id: 2, votevalue: 1, votable_id: 1, votable_type: 'Question')
+		vote1 = Vote.create(user_id: 3, votevalue: -1, votable_id: 1, votable_type: 'Question')
+
+# answers------------------
+		answer1 = Answer.create(user_id: 1, question_id: 1, body: 'what up I am antonio answering a question nr1')
+		answer1 = Answer.create(user_id: 1, question_id: 2, body: 'what up I am antonio answering a question nr2')
+		answer1 = Answer.create(user_id: 2, question_id: 2, body: 'what up I am nikolai answering a question nr2')
+		answer1 = Answer.create(user_id: 3, question_id: 1, body: 'what up I am lauris answering a question nr1')
+		answer1 = Answer.create(user_id: 3, question_id: 2, body: 'what up I am lauris answering a question nr2 too')
+
+
+		vote1 = Vote.create(user_id: 1, votevalue: 1, votable_id: 1, votable_type: 'Answer')
+		vote1 = Vote.create(user_id: 2, votevalue: 1, votable_id: 1, votable_type: 'Answer')
+		vote1 = Vote.create(user_id: 3, votevalue: -1, votable_id: 1, votable_type: 'Answer')
