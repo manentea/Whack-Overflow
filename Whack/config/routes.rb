@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :answers, except: :index
   resources :users
 
   get 'login' => 'sessions#new'
@@ -59,4 +60,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+
 end
