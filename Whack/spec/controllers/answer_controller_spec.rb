@@ -1,5 +1,5 @@
 require 'rails_helper'
-describe AnswerController do
+describe AnswersController do
 
   describe 'GET #show' do
     it "assigns the requested answer to @answer" do
