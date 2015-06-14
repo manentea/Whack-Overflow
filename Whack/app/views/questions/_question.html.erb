@@ -1,6 +1,15 @@
 <div class="question-partial">
 
-	<h3><%= @question.title %></h3>
-	<p><%= @question.body %></p>
 
+	<h3><%= question.title %></h3>
+	<p><%= question.body %></p>
+
+	<% comments.each do |c| %>
+		<%= render partial: 'comments/comment', locals: {comment: c} %>
+	<% end %>
+	
+	<%= link_to 'edit', edit_question_path(question)  %>
+	<%= link_to 'delete', question, method: :delete, data: { confirm: 'sure?'} %>
 </div>
+
+
