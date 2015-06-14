@@ -1,6 +1,8 @@
   Rails.application.routes.draw do
   root    'questions#index'
-  resources :answers, except: :index
+  resources :answers, except: :index do
+    resources :votes, only: [:create]
+  end
   resources :users
 
 
@@ -9,6 +11,7 @@
   delete 'logout' => 'sessions#destroy'
 
   resources :questions do
+    resources :votes, only: [:create]
     resources :comments, except: [:edit]
   end
 
