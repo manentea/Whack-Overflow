@@ -1,3 +1,9 @@
+<div class="header-main-functionality">
+	
+	<%= link_to 'Create a new Question', new_question_path %>
+</div>
+
+
 <div class='user-login-functionality'><% if session[:user_id] %>
   <%= link_to "Logout", logout_path, method: 'delete' %>
 <% else %>
