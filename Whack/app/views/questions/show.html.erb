@@ -2,7 +2,14 @@
 
 <%= render partial: 'question', locals: {question: @question,
 																				comments: @question.comments}  %>
-	
+
+
+<% @question.answers.each do |a| %>
+  <%= render partial: 'answers/answer', locals: {answer: a} %>
+<% end %>
+
+<%= link_to 'NEW ANSWER', new_question_answer_path(@question)   %>
+
 
 
 <%= link_to 'index', questions_url  %>

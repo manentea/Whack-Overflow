@@ -1,4 +1,6 @@
-<%= form_for @answer do |f| %>
+
+
+<%= form_for ([@question, @answer]) do |f| %>
  <% if @answer.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -11,9 +13,8 @@
     </ul>
  </div>
 <% end %>
-
   <p>
-   <%= f.label :body %><br>
+    <%= f.label :body %><br>
     <%= f.text_area :body %>
   </p>
   <p>

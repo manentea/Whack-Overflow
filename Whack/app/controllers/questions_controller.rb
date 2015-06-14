@@ -4,10 +4,10 @@ class QuestionsController < ApplicationController
 
 	def index
 		@questions = Question.includes(:comments).all
-	end	
-	
+	end
+
 	def show
-		@question = Question.includes(:comments).find(params[:id])
+		@question = Question.includes(:comments, :answers).find(params[:id])
 	end
 
 	def new
