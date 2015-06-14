@@ -32,7 +32,7 @@ class AnswersController < ApplicationController
   end
 
   private
-  def article_params
+  def answer_params
     params.require(:answer).permit(:body)
   end
 end
