@@ -25,10 +25,9 @@ class CommentsController < ApplicationController
 	def create
 		@comment =  Comment.new(full_params)
 		full_params = comment_params
-		full_params[:user_id] = 1
-		# xxxcurrent_user.id
+		full_params[:user_id] = session[:user_id]
 		full_params[:commentable_id] = params[:question_id]
-		full_params[:commentable_type] = params[]
+		# full_params[:commentable_type] = params[]
 		byebug
 		if @comment.save
 			# redirect_to @comment
@@ -41,8 +40,7 @@ class CommentsController < ApplicationController
 	def create
   @commentable = find_commentable
   full_params = comment_params
-	full_params[:user_id] = 1
-	# xxxcurrent_user.id
+	full_params[:user_id] = session[:user_id]
   @comment = @commentable.comments.build(full_params)
 
   if @comment.save
@@ -77,10 +75,6 @@ end
 		    end
 		  end
 		  nil
-		end
-
-		def xxxcurrent_user
-			User.find_by(id: session[:user_id])
 		end
 
 		def comment_params

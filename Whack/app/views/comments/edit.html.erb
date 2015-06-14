@@ -2,7 +2,7 @@
 
 
 <div class="comment-form">
-	<%= form_for(@comment) do |f| %>
+	<%= form_for @comment, as: :get, url: edit_comment_path(@comment) do |f| %>
 
   	
       <%= f.label :body %>

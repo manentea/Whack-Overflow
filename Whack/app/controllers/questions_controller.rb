@@ -1,11 +1,8 @@
-# USER ID CURRENTLY HARD CODED 
-
 
 class QuestionsController < ApplicationController
 
 
 	def index
-
 		@questions = Question.includes(:comments).all
 	end	
 	
@@ -19,11 +16,10 @@ class QuestionsController < ApplicationController
 
 	def create
 		h = question_params
-		h[:user_id] = 1
-		# xxxcurrent_user.id
+		h[:user_id] = session[:user_id]
 		@question = Question.new(h)
 		if @question.save
-			redirect_to xxxcurrent_user
+			redirect_to root_url
 		else
 			render :new
 		end
@@ -36,10 +32,7 @@ class QuestionsController < ApplicationController
 	def update
 		@question = Question.find(params[:id])
 		h = question_params
-		h[:user_id] = 1
-		# xxxcurrent_user.id
-		# byebug
-		@question = Question.new(h)
+		h[:user_id] = session[:user_id]
 		if @question.update_attributes(h)
 			redirect_to @question
 		else
@@ -55,15 +48,9 @@ class QuestionsController < ApplicationController
 
 
 
-
 	private
 		def question_params
 			params.require(:question).permit(:title, :body)
-
-		end
-
-		def xxxcurrent_user
-			User.find_by(id: session[:user_id])
 		end
 
 end
