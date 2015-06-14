@@ -22,7 +22,6 @@ class VotesController < ApplicationController
       vote.update(votevalue: params[:vote])
       vote.save
       @question.votes << vote
-      byebug
       redirect_to @question
     end
   end
