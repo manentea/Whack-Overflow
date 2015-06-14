@@ -13,6 +13,7 @@
     resources :votes, only: [:new, :create]
     resources :comments, except: [:edit]
     resources :answers, only: [:new, :create, :edit] do
+      resources :comments, except: [:edit]
       resources :votes, only: [:new, :create]
     end
   end
