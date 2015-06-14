@@ -7,6 +7,7 @@
 		<%= render partial: 'comments/comment', locals: {comment: c} %>
 	<% end %>
 	
+	<%= link_to 'new comment', new_question_comment_path(question)  %>
 	<%= link_to 'edit', edit_question_path(question)  %>
 	<%= link_to 'delete', question, method: :delete, data: { confirm: 'sure?'} %>
 </div>
