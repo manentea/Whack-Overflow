@@ -6,6 +6,8 @@ class Question < ActiveRecord::Base
   validates :body, presence: true
   validates :title, presence: true
 
-
+  def vote_count
+    self.votes.pluck(:votevalue).sum
+  end
 
 end
