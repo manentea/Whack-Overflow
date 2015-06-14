@@ -1,13 +1,13 @@
-<h1>User Index</h1>
+<h1>question Index</h1>
 
 <div class="list-users">
-	<% if @users %>
-		<% @users.each do |u| %>
-			<h3><%= u.name %></h3>
-			<p><%= u.email %></p>
+	<% if @questions %>
+		<% @questions.each do |question| %>
+			<%= render partial: 'question', locals: {question: question,
+																							 comments: question.comments} %>
 		<% end %>
 	<% end %>
 </div>
 
-
-<!-- refactor with (render @users) -->
+<%= link_to 'new questions', new_question_path %>
+<!-- refactor with (render @questions) -->

@@ -1,4 +1,4 @@
-xrequire 'rails_helper'
+require 'rails_helper'
 
 describe UsersController do
   let(:user) {User.create(name: 'Antonio', email: 'antonio@gmail.com', password_digest: '12345')}

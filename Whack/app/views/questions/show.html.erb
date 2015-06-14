@@ -1,5 +1,8 @@
 <h1>Question Show</h1>
 
-<%= render 'question'  %>
+<%= render partial: 'question', locals: {question: @question,
+																				comments: @question.comments}  %>
 	
+
+
 <%= link_to 'index', questions_url  %>

@@ -4,8 +4,8 @@ user3 = User.create(name: 'lauris', email: 'lauris@gmail.com', password_digest: 
 user4 = User.create(name: 'mendel' , email: 'mendel@gmail.com' ,  password_digest: 'asrgeshrdg' )
 
 # questions--------------
-		question1 = Question.create(user_id: 3, body: 'what up i am lauris asking a question')
-		question2 = Question.create(user_id: 4, body: 'what up i am mendel asking a question')
+		question1 = Question.create(user_id: 3, title: 'title1', body: 'what up i am lauris asking a question')
+		question2 = Question.create(user_id: 4, title: 'title2', body: 'what up i am mendel asking a question')
 
 		vote1 = Vote.create(user_id: 1, votevalue: 1, votable_id: 1, votable_type: 'Question')
 		vote1 = Vote.create(user_id: 2, votevalue: 1, votable_id: 1, votable_type: 'Question')
@@ -22,3 +22,7 @@ user4 = User.create(name: 'mendel' , email: 'mendel@gmail.com' ,  password_diges
 		vote1 = Vote.create(user_id: 1, votevalue: 1, votable_id: 1, votable_type: 'Answer')
 		vote1 = Vote.create(user_id: 2, votevalue: 1, votable_id: 1, votable_type: 'Answer')
 		vote1 = Vote.create(user_id: 3, votevalue: -1, votable_id: 1, votable_type: 'Answer')
+
+
+
+		comment1 = Comment.create(user_id: 1, body: 'hello this is comment1 by user1', commentable_id: 1, commentable_type: 'Question' )
