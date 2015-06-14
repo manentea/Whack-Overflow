@@ -10,7 +10,7 @@
   delete 'logout' => 'sessions#destroy'
 
   resources :questions do
-    resources :votes, only: [:create]
+    resources :votes, only: [:new, :create]
     resources :comments, except: [:edit]
     resources :answers, only: [:create, :edit] do
       resources :votes, only: [:new, :create]
