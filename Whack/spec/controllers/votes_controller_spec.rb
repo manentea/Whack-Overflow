@@ -20,7 +20,7 @@ describe VotesController do
     it 'should create a vote on an answer' do
       session[:user_id] = 1
       expect {
-      post :create, answer_id: 1, vote: {votable_id: 1, votable_type: 'Answer', votevalue: 1}
+      post :create, question_id: 1, answer_id: 1, vote: {votable_id: 1, votable_type: 'Answer', votevalue: 1}
       }.to change {valid_answer.votes.count}.by(1)
     end
   end

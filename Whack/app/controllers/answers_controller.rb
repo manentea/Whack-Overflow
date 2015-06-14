@@ -1,23 +1,23 @@
 class AnswersController < ApplicationController
+  before_action :get_answer, only: [:edit, :update, :destroy ]
 
-  def new
-    @answer = Answer.new
-  end
-
-  def show
-    @answer = Answer.find(params[:id])
-  end
-
-  def created
+  def create
+    @answer = Answer.new(answer_params)
+    if @answer.save
+      redirect_to question_path(question)
+    else
+      flash[:warn] = "Sorry that answer was not created. Please try again."
+      redirect_to :back
+    end
   end
 
   def update
-    @answer = Answer.find(params[:id])
     @answer.update(answer_params)
     if @answer.save
-       redirect_to answer_path(@answer)
+       redirect_to question_path(@question)
     else
-      render :edit
+      flash[:warn] = "Sorry that answer was not created. Please try again."
+      redirect_to :back
     end
   end
 
@@ -26,13 +26,17 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer = Answer.find(params[:id])
     @answer.destroy
     redirect_to answer_path(@answer)
   end
 
   private
+
   def answer_params
-    params.require(:answer).permit(:body)
+    params.require(:answer).permit(:body, user_id: current_user.id, question_id: params[:question_id])
+  end
+
+  def get_answer
+    @answer = Answer.find(params[:id])
   end
 end
