@@ -11,6 +11,6 @@
 
 <%= link_to 'NEW ANSWER', new_question_answer_path(@question)   %>
 
-
+<%= render partial: 'votes/questnew', locals: {question: @question} %>
 
 <%= link_to 'index', questions_url  %>

@@ -3,7 +3,7 @@
 
   resources :comments
   resources :users
-  resources :answers, only: [:update, :destroy]
+  resources :answers, only: [:new, :update, :destroy]
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
@@ -12,7 +12,7 @@
   resources :questions do
     resources :votes, only: [:new, :create]
     resources :comments, except: [:edit]
-    resources :answers, only: [:create, :edit] do
+    resources :answers, only: [:new, :create, :edit] do
       resources :votes, only: [:new, :create]
     end
   end
