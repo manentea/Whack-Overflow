@@ -1,0 +1,11 @@
+<div class="comment-partial">
+	
+	<p>author:</p>
+	<p><%= comment.user.name %></p>
+	<p>comment:</p>
+	<p class='comment-body'><%= comment.body %></p>
+
+	
+	<%= link_to 'edit comment', edit_comment_path(comment) %>
+
+</div>
