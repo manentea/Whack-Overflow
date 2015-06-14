@@ -4,6 +4,7 @@
 																				comments: @question.comments}  %>
 
 
+
 <% @question.answers.each do |a| %>
   <%= render partial: 'answers/answer', locals: {answer: a} %>
 <% end %>

@@ -1,0 +1,15 @@
+<%= link_to question_votes_path(@question, vote: 1), method: 'post' do %>
+<div>
+  <i class='question_up_vote'><%= image_tag 'tiny_arrow_up.gif' %></i>
+</div>
+<% end %>
+<div class='count'><%= @question.vote_count %></div>
+<%= link_to question_votes_path(@question, vote: -1), method: 'post' do %>
+<div>
+  <i class='question_up_vote'><%= image_tag 'tiny_arrow_down.gif' %></i>
+</div>
+<% end %>
+
+
+
+
