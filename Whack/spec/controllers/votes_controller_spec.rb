@@ -12,7 +12,7 @@ describe VotesController do
       session[:user_id] = 1
       expect {
       post :create, question_id: 1, vote: {votable_id: 1, votable_type: 'Question', votevalue: 1}
-      }.to change {valid_question.votes.count}.by(1)
+      }.to change {valid_question.vote_count}.by(1)
     end
   end
 
@@ -25,4 +25,21 @@ describe VotesController do
     end
   end
 
+   context 'votes#create' do
+    it 'should create a vote on a question' do
+      session[:user_id] = 1
+      expect {
+      post :create, question_id: 1, vote: {votable_id: 1, votable_type: 'Question', votevalue: -1}
+      }.to change {valid_question.vote_count}.by(-1)
+    end
+  end
+
+    context 'votes#create' do
+    it 'should create a vote on an answer' do
+      session[:user_id] = 1
+      expect {
+      post :create, answer_id: 1, vote: {votable_id: 1, votable_type: 'Answer', votevalue: -1}
+      }.to change {valid_answer.vote_count}.by(-1)
+    end
+  end
 end
