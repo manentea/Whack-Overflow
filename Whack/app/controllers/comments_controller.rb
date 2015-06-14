@@ -23,12 +23,13 @@ class CommentsController < ApplicationController
 	end
 
 	def create
+		# byebug
 		@comment =  Comment.new(full_params)
 		full_params = comment_params
 		full_params[:user_id] = session[:user_id]
 		full_params[:commentable_id] = params[:question_id]
 		# full_params[:commentable_type] = params[]
-		byebug
+		# byebug
 		if @comment.save
 			# redirect_to @comment
 
@@ -62,6 +63,7 @@ end
 	# UPDATE IS MISSSING
 
 	def destroy 
+		@comment = Comment.find(params[:id])
 		@comment.destroy
 		redirect_to root_url
 	end
