@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe Question do
-	
-	let(:valid_question) {Question.new(user_id: 1, body: 'testquestionbody')}
+
+	let(:valid_question) {Question.new(user_id: 1,title: 'hello', body: 'testquestionbody')}
 	let(:invalid_question) {Question.new(user_id: 1, body: '')}
 
-	it 'is valid with a user_id and body' do
+	it 'is valid with a user_id and body and title' do
 		expect(valid_question).to be_valid
 	end
 

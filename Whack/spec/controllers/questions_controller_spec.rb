@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe QuestionsController do
-	
-	let!(:valid_question) {Question.create(user_id: 1, body: 'testquestionbody')}
+
+	let!(:valid_question) {Question.create(user_id: 1,title: 'hello', body: 'testquestionbody')}
 	# let!(:new_valid_question) {Question.create(user_id: 1, body: 'newvalidquestion')}
 	let(:invalid_question) {Question.create(user_id: 1, body: '')}
 	let!(:user) {User.create(name: 'Antonio', email: 'antonio@gmail.com', password_digest: '12345')}
@@ -50,7 +50,7 @@ describe QuestionsController do
 		it 'assigns a new question to @question' do
 			get :new
 			expect(assigns(:question)).to be_a_new Question
-		end 
+		end
 		it 'renders new template' do
 			get :new
 			expect(response).to render_template :new
@@ -61,7 +61,7 @@ describe QuestionsController do
 		it 'creates a question with valid attributes' do
 			session[:user_id] = 1
 			expect {
-			  post :create, question: {body: 'testquestionbody'}
+			  post :create, question: {title: 'hello', body: 'testquestionbody'}
 			}.to change { Question.count }.by(1)
 		end
 
@@ -80,7 +80,7 @@ describe QuestionsController do
 		end
 
 		it 'renders the edit template ' do
-			get :edit, id: valid_question.id 
+			get :edit, id: valid_question.id
 			expect(response).to render_template :edit
 		end
 	end
@@ -94,7 +94,7 @@ describe QuestionsController do
   #     expect(assigns(:question).body).to eq('newvalidquestion')
   #   end
 
-   # ---> passes test but with wrong ID !!! 
+   # ---> passes test but with wrong ID !!!
 
     it 'doesnt change the attribute if it is invalid' do
     				session[:user_id] = 1
