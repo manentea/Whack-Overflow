@@ -1,6 +1,19 @@
 class AnswersController < ApplicationController
   before_action :get_answer, only: [:edit, :update, :destroy ]
 
+  def new
+    @question = Question.find(params[:question_id])
+    @answer = Answer.new
+  end
+
+  def edit
+
+  end
+
+  # ---> needs routes
+  # and view that renders form --> sending in the right variables
+  # (either somehow keeping @s or creating local varibales with locals: method )
+
   def create
     @answer = Answer.new(answer_params)
     if @answer.save
