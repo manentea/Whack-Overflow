@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-describe CommentsController do 
+describe CommentsController do
 
-	let!(:valid_comment) {Comment.create(user_id: 1, body: 'body1', 
+	let!(:valid_comment) {Comment.create(user_id: 1, body: 'body1',
 																			commentable_id: 1, commentable_type: 'Question') }
-	let(:invalid_comment1) {Comment.create(user_id: 1, body: '', 
+	let(:invalid_comment1) {Comment.create(user_id: 1, body: '',
 																			commentable_id: 1, commentable_type: 'Question') }
-	let(:invalid_comment2) {Comment.create(user_id: '', body: 'body2', 
+	let(:invalid_comment2) {Comment.create(user_id: '', body: 'body2',
 																			commentable_id: 1, commentable_type: 'Question') }
-	let!(:user) {User.create(name: 'Antonio', email: 'antonio@gmail.com', 
+	let!(:user) {User.create(name: 'Antonio', email: 'antonio@gmail.com',
 													password_digest: '12345')}
 
 	let!(:valid_question) {Question.create(user_id: 1, title: 'testtitle', body: 'testquestionbody')}
-	
+
 
 	context 'comments#show' do
 
@@ -26,7 +26,7 @@ describe CommentsController do
 			get :show, question_id: 1, id: valid_comment.id
 			expect(response).to render_template :show
  		end
-		
+
 		it 'correctly assigns variable @comment' do
 			get :show, question_id: 1, id: valid_comment.id
 			expect(assigns(:comment)).to eq(valid_comment)
@@ -69,24 +69,11 @@ describe CommentsController do
 
 		it 'doesnt create a comment if a user doesnt have a session id' do
 			expect {
-				post :create, question_id: 1, comment: {body: 'blabla',  
+				post :create, question_id: 1, comment: {body: 'blabla',
 															commentable_id: 1, commentable_type: 'Question'}
 			}.not_to change {Question.count}
 		end
 	end
-
-	context 'comments#edit' do
-		it 'assigns the correct variable to @comment' do
-			get :edit, id: valid_comment.id
-			expect(assigns(:comment)).to eq(valid_comment)
-		end
-
-		it 'renders the edit template ' do
-			get :edit, id: valid_comment.id 
-			expect(response).to render_template :edit
-		end
-	end
-
 
 	context 'comment#destroy' do
 		it 'deletes comment' do
@@ -95,5 +82,5 @@ describe CommentsController do
 			}.to change {valid_question.comments.count}.by(-1)
 		end
 	end
-	
+
 end
