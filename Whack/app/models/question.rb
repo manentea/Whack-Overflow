@@ -11,11 +11,11 @@ class Question < ActiveRecord::Base
   end
 
   def self.most_popular
-    Question.all.sort_by {|q| q.votes.count}.reverse
+    Question.all.sort_by {|q| q.vote_count}.reverse
   end
 
   def sorted_answers
-    self.answers.sort_by {|question| question.votes.count}.reverse
+    self.answers.sort_by {|question| question.vote_count}.reverse
   end
 
 end
