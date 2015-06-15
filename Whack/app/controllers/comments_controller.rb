@@ -51,8 +51,8 @@ class CommentsController < ApplicationController
 		redirect_to root_url
 	end
 
-
 	private
+
 		def find_commentable
 	  	params.each do |name, value|
 	    	if name =~ /(.+)_id$/
