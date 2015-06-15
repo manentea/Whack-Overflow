@@ -4,7 +4,7 @@
     																				comments: @question.comments}  %>
   <div><h1>Answers: </h1></div>
     <ol>
-      <% @question.answers.each do |a| %>
+      <% @question.sorted_answers.each do |a| %>
         <li><%= render partial: 'answers/answer', locals: {answer: a} %></li>
       <% end %>
     </ol>

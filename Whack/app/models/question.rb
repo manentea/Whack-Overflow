@@ -10,4 +10,12 @@ class Question < ActiveRecord::Base
     self.votes.pluck(:votevalue).sum
   end
 
+  def self.most_popular
+    Question.all.sort_by {|q| q.votes.count}.reverse
+  end
+
+  def sorted_answers
+    self.answers.sort_by {|question| question.votes.count}.reverse
+  end
+
 end
