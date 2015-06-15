@@ -1,13 +1,14 @@
-<div class="header-main-functionality">
-	
-	<%= link_to 'Create a new Question', new_question_path %>
-</div>
-
-
-<div class='user-login-functionality'><% if session[:user_id] %>
-  <%= link_to "Logout", logout_path, method: 'delete' %>
-<% else %>
-  <%= link_to "Login", login_path %>
-  <%= link_to "Sign Up", new_user_path %>
-<% end %>
+<h1>Whack Overflow</h1>
+<div id='cssmenu'>
+<ul>
+  <% if session[:user_id] %>
+   <li class='active'><%= link_to 'Home', questions_path  %></li>
+   <li><%= link_to 'Create a new Question', new_question_path %></a></li>
+   <li><%= link_to "Logout", logout_path, method: 'delete' %></li>
+  <% else %>
+   <li class='active'><%= link_to 'Home', new_user_path  %></li>
+   <li><%= link_to "Login", login_path %></li>
+   <li class='last'><%= link_to "Sign Up", new_user_path %></li>
+  <% end %>
+</ul>
 </div>

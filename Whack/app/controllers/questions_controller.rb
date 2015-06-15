@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
 
 
 	def index
-		@questions = Question.includes(:comments).all
+		@questions = Question.includes(:comments).most_popular
 	end
 
 	def show
@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
 		h[:user_id] = session[:user_id]
 		@question = Question.new(h)
 		if @question.save
-			redirect_to root_url
+			redirect_to @question
 		else
 			render :new
 		end
