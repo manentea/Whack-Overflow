@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
 
 
 	def index
-		@questions = Question.includes(:comments).all
+		@questions = Question.includes(:comments).most_popular
 	end
 
 	def show
