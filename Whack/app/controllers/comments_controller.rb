@@ -1,10 +1,3 @@
-# refactor and improve:
-	# - xxxcurrent_user method
-	# - after create redirect to respective question
-
-# USER ID CURRENTLY HARD CODED  !!!!!
-
-
 class CommentsController < ApplicationController
 
 	def index
@@ -17,57 +10,28 @@ class CommentsController < ApplicationController
 	end
 
 	def new
-		@commentable = find_commentable
+		@commentable = Question.find(params[:question_id])
 		@comment = Comment.new
-		# byebug
+		@answer = Answer.find_by(id: params[:answer_id])
 	end
-
-# 	def create
-# 		# byebug
-# 		@comment =  Comment.new(full_params)
-# 		full_params = comment_params
-# 		full_params[:user_id] = session[:user_id]
-# 		full_params[:commentable_id] = params[:question_id]
-# 		# full_params[:commentable_type] = params[]
-# 		# byebug
-# 		if @comment.save
-# 			# redirect_to @comment
-
-# 		else
-# 			# render :new
-# 		end
-# 	end
-
-# 	def create
-#   @commentable = find_commentable
-#   full_params = comment_params
-# 	full_params[:user_id] = session[:user_id]
-#   @comment = @commentable.comments.build(full_params)
-
-#   if @comment.save
-#     # flash[:notice] = "Successfully created comment."
-#     redirect_to :id => nil
-#   else
-#     render :action => 'new'
-#   end
-# end
 
 	def create
 		@question = Question.find(params[:question_id])
+		@answer = Answer.find_by(id: params[:answer_id])
 		if params[:answer_id]
 			@comment = Comment.new(comment_params)
 			@comment[:user_id] = session[:user_id]
 			@comment[commentable_id: params[:answer_id], commentable_type: 'Answer']
 			@comment.save
-			@question.comments << @comment
-			redirect_to @comment.commentable
+			@answer.comments << @comment
+			redirect_to @question
 		elsif params[:question_id]
 			@comment = Comment.new(comment_params)
 			@comment[:user_id] = session[:user_id]
 			@comment[commentable_id: params[:question_id], commentable_type: 'Question']
 			@comment.save
 			@question.comments << @comment
-			redirect_to @comment.commentable
+			redirect_to @question
 		else
 			flash[:notice] = "You can't enter an empty comment!"
 		end
