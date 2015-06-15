@@ -2,8 +2,10 @@
 
 
   <%= render partial: 'votes/questnew', locals: {question: @question} %>
-  <h3 class='question_title'><%= question.title %></h3>
-  <p><%= question.body %></p>
+  <h2 class='question_title'><%= question.title %></h2>
+  <br>
+  <br>
+  <h5><%= question.body %></h5>
 
   <% comments.each do |c| %>
     <%= render partial: 'comments/comment', locals: {comment: c} %>

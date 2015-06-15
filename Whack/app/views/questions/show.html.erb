@@ -2,18 +2,13 @@
   <div class='question_partial'>
     <%= render partial: 'question', locals: {question: @question,
     																				comments: @question.comments}  %>
-
-
-    <div class='block'>
-      <div class='answer_partial'>
-        <ol>
-          <% @question.answers.each do |a| %>
-            <li><%= render partial: 'answers/answer', locals: {answer: a} %></li>
-          <% end %>
-        </ol>
-      </div>
-    </div>
-    <% @answer = Answer.new %>
-    <%= render partial: 'answers/form', locals: {answer: @answer, question: @question}  %>
+  <div><h1>Answers: </h1></div>
+    <ol>
+      <% @question.answers.each do |a| %>
+        <li><%= render partial: 'answers/answer', locals: {answer: a} %></li>
+      <% end %>
+    </ol>
   </div>
- </div>
+  <% @answer = Answer.new %>
+  <%= render partial: 'answers/form', locals: {answer: @answer, question: @question}  %>
+</div>
