@@ -2,7 +2,7 @@
 <div id='cssmenu'>
 <ul>
   <% if session[:user_id] %>
-   <li class='active'><%= link_to 'Home', questions_path  %></li>
+   <li><%= link_to 'Home', questions_path  %></li>
    <li><%= link_to 'Create a new Question', new_question_path %></a></li>
    <li><%= link_to "Logout", logout_path, method: 'delete' %></li>
   <% else %>
