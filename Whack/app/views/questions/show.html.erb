@@ -1,16 +1,19 @@
-<h1>Question Show</h1>
+<div class='block'>
+  <div class='question_partial'>
+    <%= render partial: 'question', locals: {question: @question,
+    																				comments: @question.comments}  %>
 
-<%= render partial: 'question', locals: {question: @question,
-																				comments: @question.comments}  %>
 
-
-
-<% @question.answers.each do |a| %>
-  <%= render partial: 'answers/answer', locals: {answer: a} %>
-<% end %>
-
-<%= link_to 'NEW ANSWER', new_question_answer_path(@question)   %>
-
-<%= render partial: 'votes/questnew', locals: {question: @question} %>
-
-<%= link_to 'index', questions_url  %>
+    <div class='block'>
+      <div class='answer_partial'>
+        <ol>
+          <% @question.answers.each do |a| %>
+            <li><%= render partial: 'answers/answer', locals: {answer: a} %></li>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+    <% @answer = Answer.new %>
+    <%= render partial: 'answers/form', locals: {answer: @answer, question: @question}  %>
+  </div>
+ </div>

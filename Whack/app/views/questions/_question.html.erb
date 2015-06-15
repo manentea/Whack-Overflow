@@ -1,12 +1,13 @@
 <div class="question-partial">
 
 
-	<h3><%= question.title %></h3>
-	<p><%= question.body %></p>
+  <%= render partial: 'votes/questnew', locals: {question: @question} %>
+  <h3 class='question_title'><%= question.title %></h3>
+  <p><%= question.body %></p>
 
-	<% comments.each do |c| %>
-		<%= render partial: 'comments/comment', locals: {comment: c} %>
-	<% end %>
+  <% comments.each do |c| %>
+    <%= render partial: 'comments/comment', locals: {comment: c} %>
+  <% end %>
 
 	<%= link_to 'new comment', new_question_comment_path(question)  %>
 	<%= link_to 'edit', edit_question_path(question)  %>

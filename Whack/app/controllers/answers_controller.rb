@@ -16,8 +16,9 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
+    @answer.update(user_id: session[:user_id], question_id: params[:question_id])
     if @answer.save
-      redirect_to question_path(question)
+      redirect_to question_path(@answer.question)
     else
       flash[:warn] = "Sorry that answer was not created. Please try again."
       redirect_to :back
@@ -46,7 +47,7 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:body, user_id: current_user.id, question_id: params[:question_id])
+    params.require(:answer).permit(:body)
   end
 
   def get_answer
