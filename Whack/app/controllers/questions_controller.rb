@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
 
 
 	def index
-		@questions = Question.includes(:comments).most_popular
+		@questions = Question.includes(:comments).most_popular # Good
 	end
 
 	def show
@@ -15,9 +15,10 @@ class QuestionsController < ApplicationController
 	end
 
 	def create
-		h = question_params
-		h[:user_id] = session[:user_id]
-		@question = Question.new(h)
+		# h = question_params
+		# h[:user_id] = session[:user_id]
+		#@question = Question.new(h)
+		@question = current_user.questions.build(question_params) # This is more idiomatic
 		if @question.save
 			redirect_to @question
 		else
@@ -33,7 +34,7 @@ class QuestionsController < ApplicationController
 		@question = Question.find(params[:id])
 		h = question_params
 		h[:user_id] = session[:user_id]
-		if @question.update_attributes(h)
+		if @question.update_attributes(h) # Dont use update_attributes.  It bypasses validations.  Use .update
 			redirect_to @question
 		else
 			render :edit

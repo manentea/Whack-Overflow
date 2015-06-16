@@ -16,6 +16,12 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
+    # .update is usually called on a save db object... I'd rather you create the object with the proper
+    # params to begin with.  Maybe:
+    # @anwser = current_user.anwswers.build(answer_params.merge(
+    #   question_id: params[:question_id]
+    # ))
+    #
     @answer.update(user_id: session[:user_id], question_id: params[:question_id])
     if @answer.save
       redirect_to question_path(@answer.question)
@@ -26,6 +32,11 @@ class AnswersController < ApplicationController
   end
 
   def update
+    # I think you want
+    # if @answer.update(answer_params)
+    #   redirect....
+    #
+    # update will update the object and return true if saved or false if unable
     @answer.update(answer_params)
     if @answer.save
        redirect_to question_path(@question)

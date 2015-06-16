@@ -7,6 +7,7 @@ class VotesController < ApplicationController
   end
 
   def create
+    # This needs a refactor - I leave it to you to determine how
     if params[:answer_id]
       @answer = Answer.find(params[:answer_id])
       vote = Vote.new(user_id: session[:user_id], votable_id: params[:answer_id])
