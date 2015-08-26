@@ -1,6 +1,5 @@
 Team 
 - name: Whack - Overflow
-- members: Antonio, Nikolai, Lauris
 - user stories:
 		- As a user: 
 			- i want to be able to make a question
